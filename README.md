@@ -17,5 +17,29 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+了解Vue生命周期的一个小demo
+测试各个周期的状态：
+beforeCreate(){
+  
+}
+created(){
+  
+}
+beforeMount(){
+  
+}
+mounted(){
+  
+}
+beforeUpdate(){
+  
+}
+update(){
+  
+}
+beforeDestroyed(){
+  
+}
+destroyed(){
+  
+}

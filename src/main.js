@@ -22,7 +22,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   components: { App },
-  template: '<App/>',
+  // template: '<App/>',
   data:{
     msg:'data信息',
     img: null,
@@ -34,13 +34,14 @@ new Vue({
       return '方法返回值';
     },
     getAxios() {
-      this.axios.post(CROSS_URL+'http://m.maoyan.com/movie/list.json?type=hot&offset=0&limit=10',{
+      this.axios.post(CROSS_URL+'https://api.douban.com/v2/movie/in_theaters',{
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
       })
         .then(function(res){
-          console.log(res.data);
+          console.log(22,this);
+          console.log(res.data.subjects[0]);
           this.img = res.data.data.img;
                 //控制台打印请求成功时返回的数据
              //bind(this)可以不用
@@ -63,26 +64,27 @@ new Vue({
     // console.log('beforeCreate',this.msg,this.getList());
     //undefined not a funtion
     
-    //应用情景：
+    //应用情景：暂无
   },
   created(){
     //常用
-
+    //组件实例创建完成,属性已绑定,   但**DOM***还未生成,$el属性还不存在!
     //可以调用数据和实例方法
-    // console.log('created',this.msg,this.getList());
-    //data信息 方法返回值
-
+    // console.log('created',this.msg,this.getList());  //data信息 方法返回值
+    // console.log('created',document.querySelectorAll('li').length);  //1 
     this.getAxios();
     //应用情景：提前渲染接口的数据 axios等  异步数据的请求适宜在create钩子函数里调用
     this.init();
     //或者初始化
   },
   beforeMount(){
-
+    //此时的el还未对数据进行渲染.(虚拟dom的内容)
+    console.log('beforeMount',document.querySelectorAll('li').length);  //1 
   },
   mounted(){
     //常用
-
+    //相应的数据已经在dom渲染完毕了
+    console.log('mounted',document.querySelectorAll('li').length);  //3
   },
   beforeUpdate(){
 
