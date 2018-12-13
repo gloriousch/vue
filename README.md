@@ -50,13 +50,16 @@ this.fn = this.$methods.fn = this.methods.fn;
 
   //应用情景：提前渲染接口的数据 axios等  异步数据的请求 适宜在create钩子函数里调用
 }
+
 4.将模版编译成函数
 将模版template编译成AST树，render函数
 返回一个vdom(虚拟dom)
+
 5.触发beforeMount(){
   此时的el还未对数据进行渲染.(虚拟dom的内容)
   this.$el -> <div id="app">{{message}}</div>
 }
+
 6.触发mounted(){
   //常用
   模版编译，挂载后。
@@ -64,11 +67,15 @@ this.fn = this.$methods.fn = this.methods.fn;
   this.$el -> <div id="app">内容</div>
   应用场景：依赖于DOM的代码就放在这里吧~比如监听DOM事件
 }
+
 7.此时更新一下数据。改变msg
+
 8.触发beforeUpdate(){
   组建更新前。
 }
+
 9.重新渲染虚拟dom，并通过diff算法比较差异更新真实dom
+
 10.触发update(){
   此时数据已成为新的。
   但是注意⚠️ 不建议异步获取的数据的dom在此处操作 无法进行局部数据操作 或者最后一次数据操作
@@ -76,6 +83,7 @@ this.fn = this.$methods.fn = this.methods.fn;
   （1）如果想区分不同的数据更新使用NextTick函数，针对每一次变化做不同的处理，更新数据后立即操作dom。
   （2）watch则是对具体的属性，当他更新的时候，触发。监听具体数据的变化，并做相应的处理。
 }
+
 11.在外部调用vm.$destroy();
 
 12.触发beforeDestroyed(){
