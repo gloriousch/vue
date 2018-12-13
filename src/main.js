@@ -106,7 +106,7 @@ let vm =new Vue({
     //常用
     //初始相应的数据已经在dom渲染完毕了,可以获取到dom
     //已将数据渲染到真实dom
-    //应用情景：异步获取
+    //应用情景：挂载元素内dom节点的获取
     // console.log('mounted',document.querySelectorAll('li').length);  //3
     // console.log('this.$el',this.$el); //<div id="app">balabala</div>
   },
