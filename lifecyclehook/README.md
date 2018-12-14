@@ -17,6 +17,7 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
+Vue的生命周期
 ps:$els为 DOM 元素注册一个索引，方便通过所属实例的 $els 访问这个元素
 我的理解：$els类似于document.querySelector(' ')的功能,可以拿到指定的dom元素。
 
