@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  * {
+    margin: 0;
+    padding:0;
+  }
+  ul li {
+    list-style: none;
+    width: 300px;
+    height: 50px;
+    line-height: 50px;
+    background: #dadada;
+    margin: 3px auto;
+  }
+  .total {
+    text-align: center;
+  }
+  .change {
+    background: #acacac
+  }
+  </style>
+</head>
+<body>
+  <div id="cart">
+    <ul>
+      <li v-for="(obj,index) in arr" @click="buy(index),total()" :class="{change:obj.active}">{{obj.name}} {{obj.price}}</li>
+    </ul>
+    <div class="total" >total:<span>{{sum}}</span></div>
+  </div>
+  <script src="./vue.js"></script>
+  <script>
+    var vm = new Vue({
+      el:'#cart',
+      data:{
+        arr:[
+          {price:222,name:'aaa',active:false},
+          {price:333,name:'bbb',active:false},
+          {price:444,name:'ccc',active:false},
+          {price:555,name:'ddd',active:false},
+          {price:666,name:'eee',active:false}
+        ],
+          isChange:false,
+          sum: 0,
+      },
+      methods:{
+        buy (index) {
+          // this.isChange=!this.isChange;
+          this.arr[index].active = !this.arr[index].active;
+        },
+        total () {
+          let num =0;
+          this.arr.forEach((val,index) => {
+            if(val.active){
+              num += val.price;
+            }
+            this.sum = num;
+          });
+
+          }
+        }
+    })
+  </script>
+</body>
+</html>

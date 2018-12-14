@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+#pId {
+  color: #dad;
+}
+.box{
+    border:1px dashed #f0f;
+}
+.box2{
+    border:1px dashed #000;
+}
+.textColor{
+    color:#f00;
+    background-color:#eef;
+}
+.textSize{
+    font-size:30px;
+    font-weight:bold;
+}
+.blue {
+  background: lightblue;
+}
+</style>
+<body>
+  <div id="app">
+    {{msg}}
+    <input type="text" v-model="msg2"> 
+    <!-- vm.msg2 = "cccc" 双向绑定-->
+    {{msg2}} 
+    <span v-text="msg3"></span>
+    <span v-html="msg3"></span>
+    <div class="btn" v-on:click="fn">click</div>
+    <button class="btn2" v-on:click="fn2(1,2)">click</button>
+    <p v-bind:id="p">ppppppppppppppppppppp</p>
+    <ul class="box"  v-bind:class="{textColor:isColor, textSize:isSize}">
+    <!--可以给v-bind:class 一个对象，以动态地切换class。注意：v-bind:class指令可以与普通的class特性共存 对class style有特殊语法-->
+      <li>11111</li>
+      <li>22222</li>
+      <li>33333</li>
+    </ul>
+
+    <ul class="box2" :class="classObject">
+        <li>学习Vue</li>
+        <li>学习Node</li>
+        <li>学习Reacttt</li>
+    </ul>
+
+    <div class="tog" :class="{blue:isBlue}" @click="change">点击切换颜色</div>
+    <p :style="{color:ys,fontSize:fs}">测试bind的style</p><!--font-size等一定要驼峰写法！！！fontSize 或者加引号'font-size'-->
+    <p :style="styleObj">style对象方式写法</p>
+    <ul>
+      <li v-for="(val,index) in arr">
+        内容：{{val}},索引：{{index+1}}  , v-for in 循环
+        <a href="#">aaaa</a>
+      </li>
+      <li v-for="(n,a) in 10">{{n}}</li>
+    </ul>
+    <template v-for="a in 3">
+      <div>为了不改变dom结构</div>
+      <p>而用template表情</p>
+      <h2>这样不需要改变结构不需要外层加标签😁</h2>
+    </template>
+  </div>
+
+</body>
+<script src="./vue.js"></script>
+<script>
+  var vm = new Vue({
+    el:'#app',
+    data:{
+      msg:'aaa',
+      msg2:'bbb',
+      msg3:'<h1>ccccc</h1>',
+      p:'pId',
+      isColor:false,
+      isSize:true,
+      classObject: {
+        textColor:true,
+        textSize:false,
+        
+      },
+      fs:'20px',
+      ys:'pink',
+      isBlue:true,
+      styleObj:{
+        color: 'blue',
+      },
+      arr:[1,2,3]
+    },
+    methods: {
+      fn:function (e) {
+        console.log('click');
+        console.log(e.target);
+        console.log(event.target);
+      },
+      fn2:function (a,b) {
+        console.log(a,b);
+      },
+      change() {
+        // if(this.isBlue){
+        //   this.isBlue = false;
+        // }else{
+        //   this.isBlue = true;
+        // } 
+        // vm.isBlue = !vm.isBlue;
+        this.isBlue = !this.isBlue;
+      }
+    }
+  })
+
+  // object.defineProperty()
+  // Object.defineProperty(obj, prop, descriptor)
+</script>
+</html>
