@@ -10,6 +10,8 @@
 <body>
   <div id="app">
     <div v-if="show">{{msg}}</div>
+    <div v-show="show">{{msg}}</div>
+    <!-- 二者区别 false下v-if是直接不渲染 v-show是display：none -->
   </div>
   <script>
     let vm = new Vue({
