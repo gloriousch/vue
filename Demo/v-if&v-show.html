@@ -12,13 +12,19 @@
     <div v-if="show">{{msg}}</div>
     <div v-show="show">{{msg}}</div>
     <!-- 二者区别 false下v-if是直接不渲染 v-show是display：none -->
+
+    <div v-if="a === 'a'">aaaa</div>
+    <div v-else-if="a === 'b'">bbbb</div>
+    <div v-else>no a no b</div>
   </div>
   <script>
     let vm = new Vue({
       el:"#app",
       data:{
         show:false,
-        msg:"hello",
+        a:'a',
+        msg:"hello wolrd",
+        aaa:'bye world'
       },
 
     })
