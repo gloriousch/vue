@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>样式绑定</title>
+  <script src="./vue.js"></script>
+  <style>
+    .color{
+      background:red;
+      -moz-user-select: none;
+    }
+    .text {
+      color: aqua;
+      -moz-user-select: none;
+    }
+    .red {
+      background: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- class的对象绑定 -->
+    <div @click="changeColor" :class="{color:isColor}">{{msg}}</div>
+    <!-- 写一个数组  :class="[text]" 意思为显示isText下的数组的内容 -->
+    <div @click="changeText" :class="[isText,isRed]">{{msg}}</div>
+    <!-- 内敛  -->
+    <div :style="[styleObj,{fontSize: '40px'}]" @click="objChangeStyle">{{msg}}</div>
+  </div>
+  <script>
+  let vm = new Vue({
+    el:'#app',
+    data:{
+      msg:'aadwadw',
+      isColor:false,
+      isText:"",
+      isRed:'red',
+      styleObj:{
+        color:"pink",
+      }
+    },
+    methods:{
+      changeColor:function () {
+        this.isColor = !this.isColor;
+      },
+      changeText:function () {
+        // if(this.isText === "text"){
+        //   this.isText = " ";
+        // }else{
+        //   this.isText = "text";
+        // }
+        this.isText = this.isText === "text"?" ":"text"; 
+      },
+      objChangeStyle:function (){
+        this.styleObj.color = this.styleObj.color === "pink" ? "black": "pink";
+      }
+    }
+  })
+  </script>
+</body>
+</html>
