@@ -5,8 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <script src="./vue.js"></script>
 </head>
 <body>
-  
+    <div id="app">
+        {{fullName}}
+      </div>
+      <script>
+        let vm = new Vue({
+          el:'#app',
+          data:{
+            firstName:'li',
+            lastName:'si',
+          },
+          computed:{
+            fullName:{
+              //每次调用差值表达式{{}}时候就会调用get; 
+              get:function() {
+                return this.firstName +' '+ this.lastName;
+              },
+              //set会接收到外部的value
+              set:function (value){
+                //试试vm.fullName = 'zhangsan'
+                // console.log('set',value);
+
+                let arr = value.split(' ');
+                this.firstName = arr[0];
+                this.lastName = arr[1];
+              }
+            }
+          }
+        })
+      </script>
 </body>
 </html>
