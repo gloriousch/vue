@@ -17,8 +17,8 @@
     <div v-else-if="a === 'b'">bbbb</div>
     <div v-else>no a no b</div>
 <!-- 由于vue在重新渲染页面时候会尽量先用页面已经存在的dom 所以当重新渲染dom时候input里的输入的内容会和原来保持一致 -->
-<!-- 如何解决这样的问题呢？ 采用key值的方式。加入不同key值，vue就知道这个元素是唯一的元素，key值不同就不会复用原有dom
-  （vue里虚拟dom的diff算法） -->
+<!-- 如何解决这样的问题呢？ 采用key值的方式。加入不同key值，vue就知道这个元素是唯一的元素，key值不同就不会复用原有dom -->
+<!--（vue里虚拟dom的diff算法） -->
     <div  v-if="input">
       用户名:<input  key="name"/>
     </div>
