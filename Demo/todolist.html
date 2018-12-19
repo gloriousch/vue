@@ -5,13 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+  .done {
+    
+  }
+  </style>
 </head>
 <body>
   <div id="app">
     <input type="text" v-model="inputValue">
     <button v-on:click="handleBtnClick">提交</button>
-    <button class="n" v-on:click="normalThis">普通函数</button>
-    <button class="a" v-on:click="arrowThis.call">箭头函数</button>
 
     <ul>
       <li v-for="(item,index) in list">{{item}}</li>
@@ -23,22 +26,10 @@
   let vm = new Vue({
     el:'#app',
     data:{
-      list:['11111','22222','33333'],
-      inputValue:'22223'
+
     },
     methods : {
-      handleBtnClick() {
-        console.log(this);
-        console.log(this.inputValue);
-      },
-      normalThis() {
-        console.log('normal',this);
-        console.log(1,this.inputValue);
-      },
-      arrowThis:()=>{
-        console.log('arrow',this);
-        console.log(2,this.inputValue);
-      }
+
     }
   })
 </script>
