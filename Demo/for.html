@@ -57,7 +57,12 @@
           this.n++;
           console.log('n',this.n);
           this.list.push({id:'00'+this.n ,name:this.randomName()})
-        }
+        },
+        //可以通过set方法来给对象设置属性还能在页面响应
+        addAttr:function (){
+                Vue.set(vm.obj,"hobby1","eat")
+                vm.$set(vm.obj,"hobby2","sleep")
+              }
       }
     })
   </script>
