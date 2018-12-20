@@ -7,22 +7,26 @@
   <title>Document</title>
 </head>
 <body>
+  <!-- data定义在子组件里 必须是函数 不能是对象。(防止与其他组件产生冲突) -->
+  <!-- 子组件 自己的方法也要放在自己的component -->
   <div id="app">
     <table>
       <tbody>
-        <!-- <tr><td>1</td><td>11</td></tr>
-        <tr><td>2</td></tr>
-        <tr><td>3</td></tr> -->
-        <row></row>
-        <row></row>
-        <row></row>
+        <tr is="row"></tr>
+        <tr is="row"></tr>
+        <tr is="row"></tr>
       </tbody>
     </table>
   </div>
   <script src="../vue.js"></script>
   <script>
     Vue.component('row',{
-      template:'<tr><td>this is a row</td><td>two row</td></tr>'
+      data: function () {
+        return {
+          content:'this is content'
+        }
+      },
+      template:'<tr><td>{{content}}</td><tr>',
     })
     let vm = new Vue({
       el:"#app",

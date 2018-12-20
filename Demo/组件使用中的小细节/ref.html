@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <!-- ref 操作dom元素 -->
+</head>
+<body>
+  <div id="app">
+    <div ref="hello" @click="handle">{{msg}}</div>
+    <count></count>
+  </div>
+  <script src="../vue.js"></script>
+  <script>
+    Vue.component('count',{
+      data:function (){
+          return {
+            num:0
+          }
+        },
+      template:'<div @click="add">{{num}}</div>',
+      methods:{
+        add:function (){
+          this.num++;
+        }
+      }
+    })
+    let vm = new Vue({
+      el:"#app",
+      data:{
+        msg:'hello world'
+      },
+      methods:{
+        handle:function (){
+          // alert('world');
+          // this.$refs.ref  dom节点
+          console.log(this.$refs.hello);
+          alert(this.$refs.hello.innerHTML);
+        },
+
+      }
+    })
+  </script>
+</body>
+</html>

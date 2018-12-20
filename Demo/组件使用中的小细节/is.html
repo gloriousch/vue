@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 使用组建时候遇到的小bug  is解决 -->
+    <table>
+      <tbody>
+        <!-- <tr><td>1</td><td>11</td></tr>
+        <tr><td>2</td></tr>
+        <tr><td>3</td></tr> -->
+
+        <!-- <row></row> -->
+        <!--规范中tbody里必须放tr 直接写row时候 此时浏览器解析会出问题 把模版解析到和 idapp一级别  如何解决呢：利用is-->
+        <tr is="row"></tr>
+        <tr is="row"></tr>
+        <tr is="row"></tr>
+      </tbody>
+    </table>
+    <ul>
+      <li is="row"></li>
+    </ul>
+    <select>
+      <option is="row"></option>
+    </select>
+  </div>
+  <script src="../vue.js"></script>
+  <script>
+    Vue.component('row',{
+      template:'<tr><td>this is a row</td><td>two row</td></tr>'
+    })
+    let vm = new Vue({
+      el:"#app",
+      data:{
+        
+      },
+    })
+  </script>
+</body>
+</html>
