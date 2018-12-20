@@ -50,12 +50,12 @@
               let id = Math.ceil(Math.random() * 35);
               res += this.chars[id];
           }
-          console.log(res);
+          console.log('res',res);
           return res;
         },
         add:function (){
           this.n++;
-          console.log(this.n);
+          console.log('n',this.n);
           this.list.push({id:'00'+this.n ,name:this.randomName()})
         }
       }
