@@ -11,11 +11,17 @@
   <div id="app">
     <!-- key值显示独一无二 -->
     <div v-for="(item,index) of list" :key="item.id">
-      {{item.name}} ---{{index}}
+      {{item.name}} ---{{index}}----{{item.id}}
     </div>
     <button @click="add();randomName()">add</button>
+
+    <!-- 对象的循环 -->
+    <div v-for="(item,key,index) of obj">
+      {{item}}----{{key}}----{{index}}
+    </div>
   </div>
   <script>
+      //vue 操作数组 push pop shift unshift splice(替换) sort（排序） reverse(取反)
     let vm = new Vue({
       el:"#app",
       data:{
@@ -27,9 +33,16 @@
           {id:'005',name:'ee'},
           {id:'006',name:'ff'},
       ],
-      n:6,
-      chars:['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
+      n:6, 
+      obj:{
+        name:'lili',
+        age:18,
+        hobby:'eat',
+        looks:'beautiful'
       },
+      chars:['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
+        
+    },
       methods:{
         randomName:function (){
           let res = "";
@@ -44,7 +57,6 @@
           this.n++;
           console.log(this.n);
           this.list.push({id:'00'+this.n ,name:this.randomName()})
-          
         }
       }
     })
