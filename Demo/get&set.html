@@ -10,6 +10,9 @@
 <body>
     <div id="app">
         {{fullName}}
+        <div v-for="(item,key,index) of obj">{{index}}---{{key}}---{{item}}
+        </div>
+        <button @click="add">add</button>
       </div>
       <script>
         let vm = new Vue({
@@ -17,6 +20,10 @@
           data:{
             firstName:'li',
             lastName:'si',
+            obj:{
+            name:'aaa',
+            age:18,
+          },
           },
           computed:{
             fullName:{
@@ -33,8 +40,15 @@
                 this.firstName = arr[0];
                 this.lastName = arr[1];
                 //通过设置的值来改变computed的关联元素，进而促进computed重新计算。
-              }
+              },
             }
+          },
+          methods:{
+            //可以通过set方法来给对象设置属性还能在页面响应
+            add:function (){
+                Vue.set(vm.obj,"hobby1","eat")
+                vm.$set(vm.obj,"hobby2","sleep")
+              }
           }
         })
       </script>
