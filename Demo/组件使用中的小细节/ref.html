@@ -10,7 +10,9 @@
 <body>
   <div id="app">
     <div ref="hello" @click="handle">{{msg}}</div>
-    <count></count>
+    <count @change="sum" ref="one"></count>
+    <count @change="sum" ref="two"></count>
+    <div>total:{{total}}</div>
   </div>
   <script src="../vue.js"></script>
   <script>
@@ -24,13 +26,18 @@
       methods:{
         add:function (){
           this.num++;
-        }
+          // 子传父
+          // 告诉外边触发一个change事件
+          this.$emit('change');
+        },
+
       }
     })
     let vm = new Vue({
       el:"#app",
       data:{
-        msg:'hello world'
+        msg:'hello world',
+        total:0,
       },
       methods:{
         handle:function (){
@@ -39,7 +46,13 @@
           console.log(this.$refs.hello);
           alert(this.$refs.hello.innerHTML);
         },
-
+        sum:function (){
+          // alert('alalal')
+          // console.log(this.$refs.one);
+          // console.log(this.$refs.two);
+          // console.log(this.$refs.one.num)
+          this.total = this.$refs.one.num + this.$refs.two.num;
+        }
       }
     })
   </script>
