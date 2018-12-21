@@ -4,20 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>父子组件传值</title>
 </head>
 <body>
   <div id="app">
   <!-- 父组件如何向子组件传递：： 父组件通过属性的方式向子组件传递数据 -->
-    <count :num="0"></count>
-    <count :num="1"></count>
+    <count :num="0" @fn="transmit" @sum="psum"></count>
+    <count :num="0" @fn="transmit" @sum="psum"></count>
+    <div>父组件的total:{{total}}</div>
   </div>
   <script src="../vue.js"></script>
   <script>
     let count = {
       // 子组件在此接收
       props:['num'],
-      template:'<div @click="add">{{number}}</div>',
+      template:'<div @click="add">子组建的number:{{number}}</div>',
       //不要直接修改父组件传过来的内容(单向数据流)
       //子组件存一下父组件传过来的值就可以
       data:function (){
@@ -28,9 +29,10 @@
       methods:{
         add:function () {
           this.number++;
-          console.log(this.number);
-          console.log('么么哒');
-          
+          // console.log(this.number);
+          // console.log('么么哒');
+          this.$emit('fn','参数');
+          this.$emit('sum',1);
         }
       }
     }
@@ -40,8 +42,16 @@
         count:count
       },
       data:{
-        
+        total:0,
       },
+      methods:{
+        transmit: function (a) {
+          console.log(a);
+        },
+        psum: function (o){
+          this.total = this.total + o;
+        }
+      }
     })
   </script>
 </body>
