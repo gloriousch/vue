@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+  <!-- 父组件如何向子组件传递：： 父组件通过属性的方式向子组件传递数据 -->
+    <count :num="0"></count>
+    <count :num="1"></count>
+  </div>
+  <script src="../vue.js"></script>
+  <script>
+    let count = {
+      // 子组件在此接收
+      props:['num'],
+      template:'<div @click="add">{{number}}</div>',
+      //不要直接修改父组件传过来的内容(单向数据流)
+      //子组件存一下父组件传过来的值就可以
+      data:function (){
+        return {
+          number:this.num,
+        }
+      },
+      methods:{
+        add:function () {
+          this.number++;
+          console.log(this.number);
+          console.log('么么哒');
+          
+        }
+      }
+    }
+    let vm = new Vue({
+      el:"#app",
+      components:{
+        count:count
+      },
+      data:{
+        
+      },
+    })
+  </script>
+</body>
+</html>
